@@ -19,6 +19,8 @@ class GameScene: SKScene {
     
     var livesImages = [SKSpriteNode]()
     var lives = 3
+    var activeSliceBG: SKShapeNode!
+    var activeSliceFG: SKShapeNode!
     
     override func didMoveToView(view: SKView) {
         let background = SKSpriteNode(imageNamed: "sliceBackground")
@@ -32,6 +34,44 @@ class GameScene: SKScene {
         createScore()
         createLives()
         createSlices()
+    }
+    
+    func createScore() {
+        gameScore = SKLabelNode(fontNamed: "Chalkduster")
+        gameScore.text = "Score: 0"
+        gameScore.horizontalAlignmentMode = .Left
+        gameScore.fontSize = 48
+        
+        addChild(gameScore)
+        
+        gameScore.position = CGPoint(x: 8, y: 8)
+    }
+    
+    func createLives() {
+        for i in 0 ..< 3 {
+            let spriteNode = SKSpriteNode(imageNamed: "sliceLife")
+            spriteNode.position = CGPoint(x: CGFloat(834 + (i * 70)), y: 720)
+            addChild(spriteNode)
+            
+            livesImages.append(spriteNode)
+        }
+    }
+    
+    func createSlices() {
+        activeSliceBG = SKShapeNode()
+        activeSliceBG.zPosition = 2
+        
+        activeSliceFG = SKShapeNode()
+        activeSliceFG.zPosition = 2
+        
+        activeSliceBG.strokeColor = UIColor(red: 1, green: 0.9, blue: 0, alpha: 1)
+        activeSliceBG.lineWidth = 9
+        
+        activeSliceFG.strokeColor = UIColor.whiteColor()
+        activeSliceFG.lineWidth = 5
+        
+        addChild(activeSliceBG)
+        addChild(activeSliceFG)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
