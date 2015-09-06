@@ -15,6 +15,29 @@
 		CAB5FB7A1B9BFEF100E0259C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FB791B9BFEF100E0259C /* Images.xcassets */; };
 		CAB5FB7D1B9BFEF100E0259C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FB7B1B9BFEF100E0259C /* LaunchScreen.xib */; };
 		CAB5FB891B9BFEF100E0259C /* Swifty_NinjaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB5FB881B9BFEF100E0259C /* Swifty_NinjaTests.swift */; };
+		CAB5FB931B9BFF7200E0259C /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB5FB921B9BFF7200E0259C /* Helper.swift */; };
+		CAB5FBAB1B9BFF7A00E0259C /* explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FB951B9BFF7A00E0259C /* explosion.caf */; };
+		CAB5FBAC1B9BFF7A00E0259C /* launch.caf in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FB961B9BFF7A00E0259C /* launch.caf */; };
+		CAB5FBAD1B9BFF7A00E0259C /* penguin.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FB971B9BFF7A00E0259C /* penguin.png */; };
+		CAB5FBAE1B9BFF7A00E0259C /* penguin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FB981B9BFF7A00E0259C /* penguin@2x.png */; };
+		CAB5FBAF1B9BFF7A00E0259C /* sliceBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FB991B9BFF7A00E0259C /* sliceBackground.png */; };
+		CAB5FBB01B9BFF7A00E0259C /* sliceBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FB9A1B9BFF7A00E0259C /* sliceBackground@2x.png */; };
+		CAB5FBB11B9BFF7A00E0259C /* sliceBomb.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FB9B1B9BFF7A00E0259C /* sliceBomb.png */; };
+		CAB5FBB21B9BFF7A00E0259C /* sliceBomb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FB9C1B9BFF7A00E0259C /* sliceBomb@2x.png */; };
+		CAB5FBB31B9BFF7A00E0259C /* sliceBombFuse.caf in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FB9D1B9BFF7A00E0259C /* sliceBombFuse.caf */; };
+		CAB5FBB41B9BFF7A00E0259C /* sliceFuse.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FB9E1B9BFF7A00E0259C /* sliceFuse.sks */; };
+		CAB5FBB51B9BFF7A00E0259C /* sliceHitBomb.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FB9F1B9BFF7A00E0259C /* sliceHitBomb.sks */; };
+		CAB5FBB61B9BFF7A00E0259C /* sliceHitEnemy.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FBA01B9BFF7A00E0259C /* sliceHitEnemy.sks */; };
+		CAB5FBB71B9BFF7A00E0259C /* sliceLife.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FBA11B9BFF7A00E0259C /* sliceLife.png */; };
+		CAB5FBB81B9BFF7A00E0259C /* sliceLife@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FBA21B9BFF7A00E0259C /* sliceLife@2x.png */; };
+		CAB5FBB91B9BFF7A00E0259C /* sliceLifeGone.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FBA31B9BFF7A00E0259C /* sliceLifeGone.png */; };
+		CAB5FBBA1B9BFF7A00E0259C /* sliceLifeGone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FBA41B9BFF7A00E0259C /* sliceLifeGone@2x.png */; };
+		CAB5FBBB1B9BFF7A00E0259C /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FBA51B9BFF7A00E0259C /* spark.png */; };
+		CAB5FBBC1B9BFF7A00E0259C /* swoosh1.caf in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FBA61B9BFF7A00E0259C /* swoosh1.caf */; };
+		CAB5FBBD1B9BFF7A00E0259C /* swoosh2.caf in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FBA71B9BFF7A00E0259C /* swoosh2.caf */; };
+		CAB5FBBE1B9BFF7A00E0259C /* swoosh3.caf in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FBA81B9BFF7A00E0259C /* swoosh3.caf */; };
+		CAB5FBBF1B9BFF7A00E0259C /* whack.caf in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FBA91B9BFF7A00E0259C /* whack.caf */; };
+		CAB5FBC01B9BFF7A00E0259C /* wrong.caf in Resources */ = {isa = PBXBuildFile; fileRef = CAB5FBAA1B9BFF7A00E0259C /* wrong.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +63,29 @@
 		CAB5FB821B9BFEF100E0259C /* Swifty NinjaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swifty NinjaTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB5FB871B9BFEF100E0259C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAB5FB881B9BFEF100E0259C /* Swifty_NinjaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swifty_NinjaTests.swift; sourceTree = "<group>"; };
+		CAB5FB921B9BFF7200E0259C /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		CAB5FB951B9BFF7A00E0259C /* explosion.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = explosion.caf; sourceTree = "<group>"; };
+		CAB5FB961B9BFF7A00E0259C /* launch.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = launch.caf; sourceTree = "<group>"; };
+		CAB5FB971B9BFF7A00E0259C /* penguin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = penguin.png; sourceTree = "<group>"; };
+		CAB5FB981B9BFF7A00E0259C /* penguin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "penguin@2x.png"; sourceTree = "<group>"; };
+		CAB5FB991B9BFF7A00E0259C /* sliceBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliceBackground.png; sourceTree = "<group>"; };
+		CAB5FB9A1B9BFF7A00E0259C /* sliceBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliceBackground@2x.png"; sourceTree = "<group>"; };
+		CAB5FB9B1B9BFF7A00E0259C /* sliceBomb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliceBomb.png; sourceTree = "<group>"; };
+		CAB5FB9C1B9BFF7A00E0259C /* sliceBomb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliceBomb@2x.png"; sourceTree = "<group>"; };
+		CAB5FB9D1B9BFF7A00E0259C /* sliceBombFuse.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sliceBombFuse.caf; sourceTree = "<group>"; };
+		CAB5FB9E1B9BFF7A00E0259C /* sliceFuse.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = sliceFuse.sks; sourceTree = "<group>"; };
+		CAB5FB9F1B9BFF7A00E0259C /* sliceHitBomb.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = sliceHitBomb.sks; sourceTree = "<group>"; };
+		CAB5FBA01B9BFF7A00E0259C /* sliceHitEnemy.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = sliceHitEnemy.sks; sourceTree = "<group>"; };
+		CAB5FBA11B9BFF7A00E0259C /* sliceLife.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliceLife.png; sourceTree = "<group>"; };
+		CAB5FBA21B9BFF7A00E0259C /* sliceLife@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliceLife@2x.png"; sourceTree = "<group>"; };
+		CAB5FBA31B9BFF7A00E0259C /* sliceLifeGone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliceLifeGone.png; sourceTree = "<group>"; };
+		CAB5FBA41B9BFF7A00E0259C /* sliceLifeGone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliceLifeGone@2x.png"; sourceTree = "<group>"; };
+		CAB5FBA51B9BFF7A00E0259C /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		CAB5FBA61B9BFF7A00E0259C /* swoosh1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = swoosh1.caf; sourceTree = "<group>"; };
+		CAB5FBA71B9BFF7A00E0259C /* swoosh2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = swoosh2.caf; sourceTree = "<group>"; };
+		CAB5FBA81B9BFF7A00E0259C /* swoosh3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = swoosh3.caf; sourceTree = "<group>"; };
+		CAB5FBA91B9BFF7A00E0259C /* whack.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whack.caf; sourceTree = "<group>"; };
+		CAB5FBAA1B9BFF7A00E0259C /* wrong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = wrong.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +131,7 @@
 				CAB5FB701B9BFEF100E0259C /* GameScene.sks */,
 				CAB5FB721B9BFEF100E0259C /* GameScene.swift */,
 				CAB5FB741B9BFEF100E0259C /* GameViewController.swift */,
+				CAB5FB921B9BFF7200E0259C /* Helper.swift */,
 				CAB5FB761B9BFEF100E0259C /* Main.storyboard */,
 				CAB5FB791B9BFEF100E0259C /* Images.xcassets */,
 				CAB5FB7B1B9BFEF100E0259C /* LaunchScreen.xib */,
@@ -96,6 +143,7 @@
 		CAB5FB6C1B9BFEF100E0259C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CAB5FB941B9BFF7A00E0259C /* Content */,
 				CAB5FB6D1B9BFEF100E0259C /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -116,6 +164,35 @@
 				CAB5FB871B9BFEF100E0259C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CAB5FB941B9BFF7A00E0259C /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				CAB5FB951B9BFF7A00E0259C /* explosion.caf */,
+				CAB5FB961B9BFF7A00E0259C /* launch.caf */,
+				CAB5FB971B9BFF7A00E0259C /* penguin.png */,
+				CAB5FB981B9BFF7A00E0259C /* penguin@2x.png */,
+				CAB5FB991B9BFF7A00E0259C /* sliceBackground.png */,
+				CAB5FB9A1B9BFF7A00E0259C /* sliceBackground@2x.png */,
+				CAB5FB9B1B9BFF7A00E0259C /* sliceBomb.png */,
+				CAB5FB9C1B9BFF7A00E0259C /* sliceBomb@2x.png */,
+				CAB5FB9D1B9BFF7A00E0259C /* sliceBombFuse.caf */,
+				CAB5FB9E1B9BFF7A00E0259C /* sliceFuse.sks */,
+				CAB5FB9F1B9BFF7A00E0259C /* sliceHitBomb.sks */,
+				CAB5FBA01B9BFF7A00E0259C /* sliceHitEnemy.sks */,
+				CAB5FBA11B9BFF7A00E0259C /* sliceLife.png */,
+				CAB5FBA21B9BFF7A00E0259C /* sliceLife@2x.png */,
+				CAB5FBA31B9BFF7A00E0259C /* sliceLifeGone.png */,
+				CAB5FBA41B9BFF7A00E0259C /* sliceLifeGone@2x.png */,
+				CAB5FBA51B9BFF7A00E0259C /* spark.png */,
+				CAB5FBA61B9BFF7A00E0259C /* swoosh1.caf */,
+				CAB5FBA71B9BFF7A00E0259C /* swoosh2.caf */,
+				CAB5FBA81B9BFF7A00E0259C /* swoosh3.caf */,
+				CAB5FBA91B9BFF7A00E0259C /* whack.caf */,
+				CAB5FBAA1B9BFF7A00E0259C /* wrong.caf */,
+			);
+			path = Content;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,10 +275,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAB5FBAF1B9BFF7A00E0259C /* sliceBackground.png in Resources */,
+				CAB5FBB21B9BFF7A00E0259C /* sliceBomb@2x.png in Resources */,
+				CAB5FBB01B9BFF7A00E0259C /* sliceBackground@2x.png in Resources */,
+				CAB5FBB61B9BFF7A00E0259C /* sliceHitEnemy.sks in Resources */,
+				CAB5FBAD1B9BFF7A00E0259C /* penguin.png in Resources */,
+				CAB5FBB31B9BFF7A00E0259C /* sliceBombFuse.caf in Resources */,
+				CAB5FBBF1B9BFF7A00E0259C /* whack.caf in Resources */,
+				CAB5FBB41B9BFF7A00E0259C /* sliceFuse.sks in Resources */,
+				CAB5FBAE1B9BFF7A00E0259C /* penguin@2x.png in Resources */,
 				CAB5FB7D1B9BFEF100E0259C /* LaunchScreen.xib in Resources */,
+				CAB5FBAC1B9BFF7A00E0259C /* launch.caf in Resources */,
+				CAB5FBBB1B9BFF7A00E0259C /* spark.png in Resources */,
+				CAB5FBC01B9BFF7A00E0259C /* wrong.caf in Resources */,
+				CAB5FBB51B9BFF7A00E0259C /* sliceHitBomb.sks in Resources */,
+				CAB5FBB11B9BFF7A00E0259C /* sliceBomb.png in Resources */,
+				CAB5FBB91B9BFF7A00E0259C /* sliceLifeGone.png in Resources */,
 				CAB5FB7A1B9BFEF100E0259C /* Images.xcassets in Resources */,
+				CAB5FBBC1B9BFF7A00E0259C /* swoosh1.caf in Resources */,
+				CAB5FBBA1B9BFF7A00E0259C /* sliceLifeGone@2x.png in Resources */,
+				CAB5FBBE1B9BFF7A00E0259C /* swoosh3.caf in Resources */,
+				CAB5FBB81B9BFF7A00E0259C /* sliceLife@2x.png in Resources */,
+				CAB5FBBD1B9BFF7A00E0259C /* swoosh2.caf in Resources */,
+				CAB5FBAB1B9BFF7A00E0259C /* explosion.caf in Resources */,
 				CAB5FB711B9BFEF100E0259C /* GameScene.sks in Resources */,
 				CAB5FB781B9BFEF100E0259C /* Main.storyboard in Resources */,
+				CAB5FBB71B9BFF7A00E0259C /* sliceLife.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +321,7 @@
 				CAB5FB731B9BFEF100E0259C /* GameScene.swift in Sources */,
 				CAB5FB751B9BFEF100E0259C /* GameViewController.swift in Sources */,
 				CAB5FB6F1B9BFEF100E0259C /* AppDelegate.swift in Sources */,
+				CAB5FB931B9BFF7200E0259C /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
