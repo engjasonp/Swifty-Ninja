@@ -6,7 +6,12 @@
 //  Copyright (c) 2015 EngJason. All rights reserved.
 //
 
+import AVFoundation
 import SpriteKit
+
+enum ForceBomb {
+    case Never, Always, Default
+}
 
 class GameScene: SKScene {
     
@@ -25,6 +30,8 @@ class GameScene: SKScene {
     var activeSlicePoints = [CGPoint]()
     
     var swooshSoundActive = false
+    var bombSoundEffect: AVAudioPlayer!
+    var activeEnemies = [SKSpriteNode]()
     
     override func didMoveToView(view: SKView) {
         let background = SKSpriteNode(imageNamed: "sliceBackground")
@@ -156,7 +163,104 @@ class GameScene: SKScene {
         }
     }
     
-    override func update(currentTime: CFTimeInterval) {
+    //////////////////////////////
+    ////// CREATE AN ENEMY ///////
+    //////////////////////////////
     
+    func createEnemy(forceBomb: ForceBomb = .Default) {
+        var enemy: SKSpriteNode
+        
+        var enemyType = RandomInt(min: 0, max: 6)
+        
+        if forceBomb == .Never {
+            enemyType = 1
+        } else if forceBomb == .Always {
+            enemyType = 0
+        }
+        
+        if enemyType == 0 {
+            // 1
+            enemy = SKSpriteNode()
+            enemy.zPosition = 1
+            enemy.name = "bombContainer"
+            
+            // 2
+            let bombImage = SKSpriteNode(imageNamed: "sliceBomb")
+            bombImage.name = "bomb"
+            enemy.addChild(bombImage)
+            
+            // 3
+            if bombSoundEffect != nil {
+                bombSoundEffect.stop()
+                bombSoundEffect = nil
+            }
+            
+            // 4
+            let path = NSBundle.mainBundle().pathForResource("sliceBombFuse.caf", ofType:nil)!
+            let url = NSURL(fileURLWithPath: path)
+            let sound = AVAudioPlayer(contentsOfURL: url, error: nil)
+            bombSoundEffect = sound
+            sound.play()
+            
+            // 5
+            let particlePath = NSBundle.mainBundle().pathForResource("sliceFuse", ofType: "sks")!
+            let emitter = NSKeyedUnarchiver.unarchiveObjectWithFile(particlePath) as! SKEmitterNode
+            emitter.position = CGPoint(x: 76, y: 64)
+            enemy.addChild(emitter)
+        } else {
+            enemy = SKSpriteNode(imageNamed: "penguin")
+            runAction(SKAction.playSoundFileNamed("launch.caf", waitForCompletion: false))
+            enemy.name = "enemy"
+        }
+        
+        // 1
+        let randomPosition = CGPoint(x: RandomInt(min: 64, max: 960), y: -128)
+        enemy.position = randomPosition
+        
+        // 2
+        let    randomAngularVelocity = CGFloat(RandomInt(min: -6, max: 6)) / 2.0
+        var randomXVelocity = 0
+        
+        // 3
+        if randomPosition.x < 256 {
+            randomXVelocity = RandomInt(min: 8, max: 15)
+        } else if randomPosition.x < 512 {
+            randomXVelocity = RandomInt(min: 3, max: 5)
+        } else if randomPosition.x < 768 {
+            randomXVelocity = -RandomInt(min: 3, max: 5)
+        } else {
+            randomXVelocity = -RandomInt(min: 8, max: 15)
+        }
+        
+        // 4
+        let randomYVelocity = RandomInt(min: 24, max: 32)
+        
+        // 5
+        enemy.physicsBody = SKPhysicsBody(circleOfRadius: 64)
+        enemy.physicsBody!.velocity = CGVector(dx: randomXVelocity * 40, dy: randomYVelocity * 40)
+        enemy.physicsBody!.angularVelocity = randomAngularVelocity
+        enemy.physicsBody!.collisionBitMask = 0
+        
+        addChild(enemy)
+        activeEnemies.append(enemy)
+    }
+    
+    override func update(currentTime: CFTimeInterval) {
+        var bombCount = 0
+        
+        for node in activeEnemies {
+            if node.name == "bombContainer" {
+                ++bombCount
+                break
+            }
+        }
+        
+        if bombCount == 0 {
+            // no bombs – stop the fuse sound!
+            if bombSoundEffect != nil {
+                bombSoundEffect.stop()
+                bombSoundEffect = nil
+            }
+        }
     }
 }
