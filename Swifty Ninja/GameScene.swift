@@ -102,6 +102,19 @@ class GameScene: SKScene {
         
         activeSlicePoints.append(location)
         redrawActiveSlice()
+        
+        if !swooshSoundActive {
+            playSwooshSound()
+        }
+    }
+    
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        activeSliceBG.runAction(SKAction.fadeOutWithDuration(0.25))
+        activeSliceFG.runAction(SKAction.fadeOutWithDuration(0.25))
+    }
+    
+    override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+        touchesEnded(touches, withEvent: event)
     }
     
     func redrawActiveSlice() {
@@ -130,13 +143,17 @@ class GameScene: SKScene {
         activeSliceFG.path = path.CGPath
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        activeSliceBG.runAction(SKAction.fadeOutWithDuration(0.25))
-        activeSliceFG.runAction(SKAction.fadeOutWithDuration(0.25))
-    }
-    
-    override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
-        touchesEnded(touches, withEvent: event)
+    func playSwooshSound() {
+        swooshSoundActive = true
+        
+        var randomNumber = RandomInt(min: 1, max: 3)
+        var soundName = "swoosh\(randomNumber).caf"
+        
+        let swooshSound = SKAction.playSoundFileNamed(soundName, waitForCompletion: true)
+        
+        runAction(swooshSound) { [unowned self] in
+            self.swooshSoundActive = false
+        }
     }
     
     override func update(currentTime: CFTimeInterval) {
