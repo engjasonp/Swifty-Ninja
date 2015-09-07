@@ -19,9 +19,12 @@ class GameScene: SKScene {
     
     var livesImages = [SKSpriteNode]()
     var lives = 3
+    
     var activeSliceBG: SKShapeNode!
     var activeSliceFG: SKShapeNode!
     var activeSlicePoints = [CGPoint]()
+    
+    var swooshSoundActive = false
     
     override func didMoveToView(view: SKView) {
         let background = SKSpriteNode(imageNamed: "sliceBackground")
@@ -76,15 +79,55 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-
+        super.touchesBegan(touches, withEvent: event)
+        
+        activeSlicePoints.removeAll(keepCapacity: true)
+        
+        let touch = touches.first as! UITouch
+        let location = touch.locationInNode(self)
+        activeSlicePoints.append(location)
+        
+        redrawActiveSlice()
+        
+        activeSliceBG.removeAllActions()
+        activeSliceFG.removeAllActions()
+        
+        activeSliceBG.alpha = 1
+        activeSliceFG.alpha = 1
     }
 
     override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
-        let touch = touches.anyObject() as! UITouch
+        let touch = touches.first as! UITouch
         let location = touch.locationInNode(self)
         
         activeSlicePoints.append(location)
         redrawActiveSlice()
+    }
+    
+    func redrawActiveSlice() {
+        // 1
+        if activeSlicePoints.count < 2 {
+            activeSliceBG.path = nil
+            activeSliceFG.path = nil
+            return
+        }
+        
+        // 2
+        while activeSlicePoints.count > 12 {
+            activeSlicePoints.removeAtIndex(0)
+        }
+        
+        // 3
+        var path = UIBezierPath()
+        path.moveToPoint(activeSlicePoints[0])
+        
+        for var i = 1; i < activeSlicePoints.count; ++i {
+            path.addLineToPoint(activeSlicePoints[i])
+        }
+        
+        // 4
+        activeSliceBG.path = path.CGPath
+        activeSliceFG.path = path.CGPath
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
