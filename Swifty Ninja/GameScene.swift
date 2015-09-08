@@ -134,6 +134,44 @@ class GameScene: SKScene {
         if !swooshSoundActive {
             playSwooshSound()
         }
+        
+        let nodes = nodesAtPoint(location) as! [SKNode]
+        
+        for node in nodes {
+            if node.name == "enemy" {
+                // 1
+                let explosionPath = NSBundle.mainBundle().pathForResource("sliceHitEnemy", ofType: "sks")!
+                let emitter = NSKeyedUnarchiver.unarchiveObjectWithFile(explosionPath) as! SKEmitterNode
+                emitter.position = node.position
+                addChild(emitter)
+                
+                // 2
+                node.name = ""
+                
+                // 3
+                node.physicsBody!.dynamic = false
+                
+                // 4
+                let scaleOut = SKAction.scaleTo(0.001, duration:0.2)
+                let fadeOut = SKAction.fadeOutWithDuration(0.2)
+                let group = SKAction.group([scaleOut, fadeOut])
+                
+                // 5
+                let seq = SKAction.sequence([group, SKAction.removeFromParent()])
+                node.runAction(seq)
+                
+                // 6
+                ++score
+                
+                // 7
+                let index = find(activeEnemies, node as! SKSpriteNode)!
+                activeEnemies.removeAtIndex(index)
+                
+                // 8
+                runAction(SKAction.playSoundFileNamed("whack.caf", waitForCompletion: false))            } else if node.name == "bomb" {
+                // destroy bomb
+            }
+        }
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
