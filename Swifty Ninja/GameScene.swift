@@ -9,6 +9,10 @@
 import AVFoundation
 import SpriteKit
 
+enum SequenceType: Int {
+    case OneNoBomb, One, TwoWithOneBomb, Two, Three, Four, Chain, FastChain
+}
+
 enum ForceBomb {
     case Never, Always, Default
 }
@@ -33,6 +37,12 @@ class GameScene: SKScene {
     var bombSoundEffect: AVAudioPlayer!
     var activeEnemies = [SKSpriteNode]()
     
+    var popupTime = 0.9
+    var sequence: [SequenceType]!
+    var sequencePosition = 0
+    var chainDelay = 3.0
+    var nextSequenceQueued = true
+    
     override func didMoveToView(view: SKView) {
         let background = SKSpriteNode(imageNamed: "sliceBackground")
         background.position = CGPoint(x: 512, y: 384)
@@ -45,6 +55,17 @@ class GameScene: SKScene {
         createScore()
         createLives()
         createSlices()
+        
+        sequence = [.OneNoBomb, .OneNoBomb, .TwoWithOneBomb, .TwoWithOneBomb, .Three, .One, .Chain]
+        
+        for i in 0 ... 1000 {
+            var nextSequence = SequenceType(rawValue: RandomInt(min: 2, max: 7))!
+            sequence.append(nextSequence)
+        }
+        
+        runAfterDelay(2) { [unowned self] in
+            self.tossEnemies()
+        }
     }
     
     func createScore() {
@@ -262,5 +283,85 @@ class GameScene: SKScene {
                 bombSoundEffect = nil
             }
         }
+        
+        if activeEnemies.count > 0 {
+            for node in activeEnemies {
+                if node.position.y < -140 {
+                    node.removeFromParent()
+                    
+                    if let index = find(activeEnemies, node) {
+                        activeEnemies.removeAtIndex(index)
+                    }
+                }
+            }
+        } else {
+            if !nextSequenceQueued {
+                runAfterDelay(popupTime) { [unowned self] in
+                    self.tossEnemies()
+                }
+                
+                nextSequenceQueued = true
+            }
+        }
+    }
+    
+    //////////////////////////////
+    /////// TOSS AN ENEMY ////////
+    //////////////////////////////
+    
+    func tossEnemies() {
+        popupTime *= 0.991
+        chainDelay *= 0.99
+        physicsWorld.speed *= 1.02
+        
+        let sequenceType = sequence[sequencePosition]
+        
+        switch sequenceType {
+        case .OneNoBomb:
+            createEnemy(forceBomb: .Never)
+            
+        case .One:
+            createEnemy()
+            
+        case .TwoWithOneBomb:
+            createEnemy(forceBomb: .Never)
+            createEnemy(forceBomb: .Always)
+            
+        case .Two:
+            createEnemy()
+            createEnemy()
+            
+        case .Three:
+            createEnemy()
+            createEnemy()
+            createEnemy()
+            
+        case .Four:
+            createEnemy()
+            createEnemy()
+            createEnemy()
+            createEnemy()
+            
+        case .Chain:
+            createEnemy()
+            
+            runAfterDelay(chainDelay / 5.0) { [unowned self] in self.createEnemy() }
+            runAfterDelay(chainDelay / 5.0 * 2) { [unowned self] in self.createEnemy() }
+            runAfterDelay(chainDelay / 5.0 * 3) { [unowned self] in self.createEnemy() }
+            runAfterDelay(chainDelay / 5.0 * 4) { [unowned self] in self.createEnemy() }
+            
+        case .FastChain:
+            createEnemy()
+            
+            runAfterDelay(chainDelay / 10.0) { [unowned self] in self.createEnemy() }
+            runAfterDelay(chainDelay / 10.0 * 2) { [unowned self] in self.createEnemy() }
+            runAfterDelay(chainDelay / 10.0 * 3) { [unowned self] in self.createEnemy() }
+            runAfterDelay(chainDelay / 10.0 * 4) { [unowned self] in self.createEnemy() }
+        }
+        
+        
+        ++sequencePosition
+        
+        nextSequenceQueued = false
     }
 }
