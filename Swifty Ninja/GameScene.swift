@@ -20,6 +20,7 @@ enum ForceBomb {
 class GameScene: SKScene {
     
     var gameScore: SKLabelNode!
+    var gameOver: SKLabelNode!
     var score: Int = 0{
         didSet {
             gameScore.text = "Score: \(score)"
@@ -44,6 +45,8 @@ class GameScene: SKScene {
     var nextSequenceQueued = true
     
     var gameEnded = false
+    
+    var replayButton: SKLabelNode!
     
     override func didMoveToView(view: SKView) {
         let background = SKSpriteNode(imageNamed: "sliceBackground")
@@ -479,6 +482,19 @@ class GameScene: SKScene {
         gameEnded = true
         physicsWorld.speed = 0
         userInteractionEnabled = false
+
+        gameOver = SKLabelNode(fontNamed: "Chalkduster")
+        gameOver.text = "Game Over!"
+        gameOver.fontSize = 48
+        gameOver.position = CGPoint(x: 512, y: 384)
+        
+        replayButton = SKLabelNode(fontNamed: "Chalkduster")
+        replayButton.text = "Replay?"
+        replayButton.fontSize = 48
+        replayButton.position = CGPoint(x: 512, y: 324)
+        
+        addChild(self.replayButton)
+        addChild(gameOver)
         
         if bombSoundEffect != nil {
             bombSoundEffect.stop()
